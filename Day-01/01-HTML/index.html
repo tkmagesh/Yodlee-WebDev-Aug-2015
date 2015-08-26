@@ -38,6 +38,27 @@
                 /*margin-left: 5px;*/
 
             }
+            .notInStock{
+                font-style: italic;
+                font-weight: bold;
+                text-decoration: line-through;
+                color : red;
+            }
+            label{
+                display: block;
+            }
+            .invalid{
+                border : 1px solid red;
+                background-color: lightpink;
+            }
+
+            .error {
+                color : red;
+                display : none;
+            }
+            .invalid + .error {
+                display : inline;
+            }
         </style>
     </head>
     <body>
@@ -65,7 +86,7 @@
                 <h2>Categories</h2>
                 <ul>
                     <li>Stationaries</li>
-                    <li>Utencils</li>
+                    <li class="notInStock">Utencils</li>
                     <li>Books</li>
                     <li>Electronics</li>
                 </ul>
@@ -112,40 +133,41 @@
             <section>
                 <h2>New Product</h2>
                 <div>
-                    <label for="txtName" accesskey="n">Name :</label>
-                    <input type="text" name="" id="txtName">
-                    <label for="">Cost :</label>
-                    <input type="number" name="" id="">
-                    <label for="">Units :</label>
-                    <input type="number" name="" id="">
-                    <label for="">Category :</label>
-                    <select name="" id="">
-                        <option>Stationaries</option>
-                        <option>Utencils</option>
-                        <option>Books</option>
-                        <option>Electronics</option>
-                    </select>
-                    <input type="button" value="Save">
-                    <input type="reset" value="Reset">
+                    <div class="field">
+                        <label for="txtName" accesskey="n">Name :</label>
+                        <input type="text" name="" id="txtName">
+                        <span class="error">Please check the data</span>
+                    </div>
+                    <div class="field">
+                        <label for="">Cost :</label>
+                        <input class="invalid" type="number" name="" id="">
+                        <span class="error">Please check the data</span>
+                    </div>
+                    <div class="field">
+                        <label for="">Units :</label>
+                        <input class="invalid" type="number" name="" id="">
+                        <span class="error">Please check the data</span>
+                    </div>
+                    <div class="field">
+                        <label for="">Category :</label>
+                        <select name="" id="">
+                            <option>Stationaries</option>
+                            <option>Utencils</option>
+                            <option>Books</option>
+                            <option>Electronics</option>
+                        </select>
+                        <span class="error">Please check the data</span>
+                    </div>
+                    <div class="field">
+                        <input type="button" value="Save">
+                        <input type="reset" value="Reset">
+                    </div>
                 </div>
             </section>
         </section>
         <footer>
             <div>Copyright - Yodlee '2015</div>            
         </footer>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div style="display : inline">This is a div</div>
-        <div style="display : inline">This is a div</div>
-        <span style="display : block">This is a span</span>
-        <span style="display : block">This is a span</span>
+
     </body>
 </html>
