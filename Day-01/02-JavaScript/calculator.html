@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <script>
+        window.addEventListener("DOMContentLoaded", init);
+        var txtNumber1 = null,
+            txtNumber2 = null;
+        function init(){
+            var btnAdd = document.getElementById("btnAdd");
+            btnAdd.addEventListener("click", onBtnAddClick);
+            var btnSubtract = document.getElementById("btnSubtract");
+            btnSubtract.addEventListener("click", onBtnSubtractClick);
+            var btnMultiply = document.getElementById("btnMultiply");
+            btnMultiply.addEventListener("click", onBtnMultiplyClick);
+            var btnDivide = document.getElementById("btnDivide");
+            btnDivide.addEventListener("click", onBtnDivideClick);
+            txtNumber1 = document.getElementById("txtNumber1");
+            txtNumber2 = document.getElementById("txtNumber2");
+        }
+
+        function onBtnAddClick(){
+            var result = parseInt(txtNumber1.value, 10) + parseInt(txtNumber2.value,10);
+            document.getElementById("divMessage").innerHTML = result;
+        }
+
+        function onBtnSubtractClick(){
+            var result = parseInt(txtNumber1.value, 10) - parseInt(txtNumber2.value,10);
+            document.getElementById("divMessage").innerHTML = result;
+        }
+
+        function onBtnMultiplyClick(){
+            var result = parseInt(txtNumber1.value, 10) * parseInt(txtNumber2.value,10);
+            document.getElementById("divMessage").innerHTML = result;
+        }
+
+        function onBtnDivideClick(){
+            var result = parseInt(txtNumber1.value, 10) / parseInt(txtNumber2.value,10);
+            document.getElementById("divMessage").innerHTML = result;
+        }
+
+
+
+    </script>
+</head>
+<body>
+    <input type="text" name="" id="txtNumber1">
+    <input type="text" name="" id="txtNumber2">
+    <input type="button" value="Add" id="btnAdd">
+    <input type="button" value="Subtract" id="btnSubtract">
+    <input type="button" value="Multiply" id="btnMultiply">
+    <input type="button" value="Divide" id="btnDivide">
+    <div id="divMessage"></div>
+</body>
+</html>
