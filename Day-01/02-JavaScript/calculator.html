@@ -22,22 +22,25 @@
 
         function onBtnAddClick(){
             var result = parseInt(txtNumber1.value, 10) + parseInt(txtNumber2.value,10);
-            document.getElementById("divMessage").innerHTML = result;
+            display(result);
         }
 
         function onBtnSubtractClick(){
             var result = parseInt(txtNumber1.value, 10) - parseInt(txtNumber2.value,10);
-            document.getElementById("divMessage").innerHTML = result;
+            display(result);
         }
 
         function onBtnMultiplyClick(){
             var result = parseInt(txtNumber1.value, 10) * parseInt(txtNumber2.value,10);
-            document.getElementById("divMessage").innerHTML = result;
+            display(result);
         }
 
         function onBtnDivideClick(){
             var result = parseInt(txtNumber1.value, 10) / parseInt(txtNumber2.value,10);
-            document.getElementById("divMessage").innerHTML = result;
+            display(result);
+        }
+        function display(msg){
+            document.getElementById("divMessage").innerHTML = msg;
         }
 
 
