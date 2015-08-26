@@ -1,7 +1,44 @@
 <!doctype html>
 <html>
     <head>
-        
+        <style>
+            h1{
+                font-size: 28pt;
+            }
+            .units{
+                color : red;
+                font-weight: bold;
+            }
+            #productListSection{
+                /*margin-left: 30px;*/
+            }
+            header {
+                border : 2px solid gray;
+                background-color: gray;
+                padding-left : 8px;
+                border-radius: 5px;
+
+            }
+            header h1{
+
+                text-shadow: 1px 1px 0px white;
+            }
+            body {
+                margin: 2px;
+            }
+            .desc{
+                margin: 10px;
+                text-indent: 20px;
+            }
+            ul{
+                list-style: none;
+                -webkit-padding-start: 10px;
+            }
+            ul li{
+                /*margin-left: 5px;*/
+
+            }
+        </style>
     </head>
     <body>
         <header>
@@ -11,29 +48,29 @@
         <section>
             <section>
                 <h2>Overview</h2>
-                <div>
+                <div class="desc">
                     Ita multos magna quorum admodum qui offendit ex quis, nam ad exercitation an eram vidisse ex adipisicing. Iis minim incididunt cupidatat, eiusmod te aute in arbitror duis laboris deserunt, vidisse noster excepteur. Quid vidisse o aliquip, noster qui est tamen voluptate, anim expetendis appellat non admodum labore nam expetendis comprehenderit. Excepteur iis tamen. Minim do mandaremus in occaecat nam litteris. Elit se ubi malis appellat, multos probant ingeniis, sunt pariatur nam expetendis eu incurreret nisi fore te quid.
                 </div>
             </section>
             <section>
                 <h2>History</h2>
-                <div>
+                <div class="desc">
                     Ita multos magna quorum admodum qui offendit ex quis, nam ad exercitation an eram vidisse ex adipisicing. Iis minim incididunt cupidatat, eiusmod te aute in arbitror duis laboris deserunt, vidisse noster excepteur. Quid vidisse o aliquip, noster qui est tamen voluptate, anim expetendis appellat non admodum labore nam expetendis comprehenderit. Excepteur iis tamen. Minim do mandaremus in occaecat nam litteris. Elit se ubi malis appellat, multos probant ingeniis, sunt pariatur nam expetendis eu incurreret nisi fore te quid.
                 </div>
-                <div>
+                <div class="desc">
                     Ita multos magna quorum admodum qui offendit ex quis, nam ad exercitation an eram vidisse ex adipisicing. Iis minim incididunt cupidatat, eiusmod te aute in arbitror duis laboris deserunt, vidisse noster excepteur. Quid vidisse o aliquip, noster qui est tamen voluptate, anim expetendis appellat non admodum labore nam expetendis comprehenderit. Excepteur iis tamen. Minim do mandaremus in occaecat nam litteris. Elit se ubi malis appellat, multos probant ingeniis, sunt pariatur nam expetendis eu incurreret nisi fore te quid.
                 </div>    
             </section>
             <section>
                 <h2>Categories</h2>
-                <ol>
+                <ul>
                     <li>Stationaries</li>
                     <li>Utencils</li>
                     <li>Books</li>
                     <li>Electronics</li>
-                </ol>
+                </ul>
             </section>
-            <section>
+            <section id="productListSection">
                 <h2>Product List</h2>
                 <table>
                     <thead>
@@ -49,25 +86,25 @@
                             <td>1</td>
                             <td>Pen</td>
                             <td>80</td>
-                            <td>10</td>
+                            <td class="units">10</td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>Hen</td>
                             <td>200</td>
-                            <td>5</td>
+                            <td class="units">5</td>
                         </tr>
                         <tr>
                             <td>3</td>
                             <td>Den</td>
                             <td>50</td>
-                            <td>50</td>
+                            <td class="units">50</td>
                         </tr>
                         <tr>
                             <td>4</td>
                             <td>Ken</td>
                             <td>25</td>
-                            <td>75</td>
+                            <td class="units">75</td>
                         </tr>                      
                     </tbody>
                 </table>
@@ -75,12 +112,19 @@
             <section>
                 <h2>New Product</h2>
                 <div>
-                    <label for="">Name :</label>
-                    <input type="text" name="" id="">
+                    <label for="txtName" accesskey="n">Name :</label>
+                    <input type="text" name="" id="txtName">
                     <label for="">Cost :</label>
                     <input type="number" name="" id="">
                     <label for="">Units :</label>
                     <input type="number" name="" id="">
+                    <label for="">Category :</label>
+                    <select name="" id="">
+                        <option>Stationaries</option>
+                        <option>Utencils</option>
+                        <option>Books</option>
+                        <option>Electronics</option>
+                    </select>
                     <input type="button" value="Save">
                     <input type="reset" value="Reset">
                 </div>
@@ -89,5 +133,19 @@
         <footer>
             <div>Copyright - Yodlee '2015</div>            
         </footer>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div style="display : inline">This is a div</div>
+        <div style="display : inline">This is a div</div>
+        <span style="display : block">This is a span</span>
+        <span style="display : block">This is a span</span>
     </body>
 </html>
