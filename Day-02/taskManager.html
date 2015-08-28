@@ -34,7 +34,20 @@
         if exists, remove "completed" else add "completed"
     4. Remove completed tasks
     5. Persist the tasks in localStorage
+        window.localStorage
+            - key/value store
+            - key & value to be strings
+            apis
+                - setItem(key, value)
+                - getItem(key) => value
+                - removeItem(key)
+                - key(index) => key at location index
+                - clear()
+                - length
+
     */
+
+
         window.addEventListener("DOMContentLoaded", init);
         var olTaskList = null,
             txtTask = null;
