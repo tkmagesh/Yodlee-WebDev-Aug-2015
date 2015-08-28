@@ -8,6 +8,12 @@
             border : 1px solid red;
             background: lightpink;
         }
+        .error{
+            color : red;
+            font-style: italic;
+            font-weight: bold;
+        }
+
     </style>
     <script>
         window.addEventListener("DOMContentLoaded", init);
@@ -18,34 +24,42 @@
 
         function init(){
             txtNumber1 = document.getElementById("txtNumber1");
+            txtNumber1.addEventListener("blur", onTxtNumberBlur);
+
             txtNumber2 = document.getElementById("txtNumber2");
+            txtNumber2.addEventListener("blur", onTxtNumberBlur);
+
             selectOperation = document.getElementById("selectOperation");
             divResult = document.getElementById("divResult");
 
             var btnCalculate = document.getElementById("btnCalculate");
             btnCalculate.addEventListener("click", onBtnCalculateClick);
         }
+        var isValid = false;
+        function onTxtNumberBlur(){
+            isValid = false;
+            var divMessageId = 'div-' + this.id + '-msg';
+            var divMessage = document.getElementById(divMessageId);
+            if (this.value === ''){
+                var msg = this.getAttribute("data-required-message");
+                divMessage.innerHTML = msg;
+                this.classList.add("invalid");
+                return;
+            }
+            if (isNaN(this.value)){
+                var msg = this.getAttribute("data-invalid-message");
+                divMessage.innerHTML = msg;
+                this.classList.add("invalid");
+                isValid = false;
+                return;
+            }
+            isValid = true;
+            this.classList.remove("invalid");
+            divMessage.innerHTML = '';
+        }
+
+
         function onBtnCalculateClick(){
-            var isValid = false;
-            if (txtNumber1.value === '' || isNaN(txtNumber1.value)){
-                txtNumber1.style.border = '1px solid red';
-                txtNumber1.style.background = 'lightpink';
-                isValid = false;
-            } else {
-                txtNumber1.style.border = '';
-                txtNumber1.style.background = '';
-                isValid = true;
-            }
-
-            if (txtNumber2.value === '' || isNaN(txtNumber2.value)){
-                txtNumber2.classList.add('invalid');
-                isValid = false;
-
-            } else {
-                txtNumber2.classList.remove('invalid');
-                isValid = true;
-            }
-
             if (!isValid) return;
 
             var number1 = parseInt(txtNumber1.value,10),
@@ -75,15 +89,17 @@
 <body>
     <h1>Calculator</h1>
     <hr>
-    <input type="text" name="" id="txtNumber1">
+    <input type="text" name="" id="txtNumber1" data-required-message="Number1 cannot be empty" data-invalid-message="Number1 is not valid!">
     <select name="" id="selectOperation">
         <option value="add">add</option>
         <option value="subtract">subtract</option>
         <option value="multiply">multiply</option>
         <option value="divide">divide</option>
     </select>
-    <input type="text" name="" id="txtNumber2">
+    <input type="text" name="" id="txtNumber2" data-required-message="Number2 cannot be empty" data-invalid-message="Number2 is not valid!">
     <input type="button" value="Calculate" id="btnCalculate">
+    <div id="div-txtNumber1-msg" class="error"></div>
+    <div id="div-txtNumber2-msg" class="error"></div>
     <div id="divResult">[Result]</div>
 </body>
 </html>
