@@ -29,9 +29,28 @@
     1. Add a new task
     2. Do validations
     3. Toggle the completion status of the task
+        when the page is loaded, attach a click event handler to all the 'li'
+        that would check for the existence of the class "completed"
+        if exists, remove "completed" else add "completed"
     4. Remove completed tasks
     5. Persist the tasks in localStorage
     */
+        window.addEventListener("DOMContentLoaded", init);
+        var olTaskList = null,
+            txtTask = null;
+        function init(){
+            olTaskList = document.getElementById("olTaskList");
+            txtTask = document.getElementById("txtTask");
+
+            var btnAddTask = document.getElementById("btnAddTask");
+            btnAddTask.addEventListener("click", onBtnAddTaskClick);
+        }
+
+        function onBtnAddTaskClick(){
+            var taskName = txtTask.value;
+            var newTaskItem = "<li>" + taskName + "</li>";
+            olTaskList.innerHTML += newTaskItem;
+        }
     </script>
 </head>
 <body>
