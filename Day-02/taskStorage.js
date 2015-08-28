@@ -12,16 +12,24 @@ function getTaskStorage(){
                         };
                         result.push(task);
                     }
+                    if (typeof this.onCountChange === 'function')
+                        this.onCountChange(storage.length);
                     return result;
+
                 },
                 save : function(taskName){
                     var newTaskId = Date.now().toString();
                     storage.setItem(newTaskId, taskName);
                     var task = { id : newTaskId, name : taskName };
+                    if (typeof this.onCountChange === 'function')
+                        this.onCountChange(storage.length);
                     return task;
                 },
                 remove : function(taskId){
                     storage.removeItem(taskId);
-                }
+                    if (typeof this.onCountChange === 'function')
+                        this.onCountChange(storage.length);
+                },
+                onCountChange : null
             }
         }

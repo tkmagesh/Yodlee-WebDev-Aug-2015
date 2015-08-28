@@ -65,6 +65,7 @@
                 var btnRemoveCompleted = document.getElementById("btnRemoveCompleted");
                 btnRemoveCompleted.addEventListener("click", onBtnRemoveCompletedClick);
 
+                taskStorage.onCountChange = onStorageCountChange;
                 var tasks = taskStorage.getAll();
                 for(var i=0; i<tasks.length; i++){
                     var task = tasks[i];
@@ -72,7 +73,14 @@
                 }
 
 
+
+
             }
+
+            function onStorageCountChange(count){
+                document.getElementById("spanCount").innerHTML = count  ;
+            }
+
 
             function onTaskItemClick(){
                 if (this.classList.contains("completed")){
@@ -113,6 +121,7 @@
 <body>
     <h1>Task Manager</h1>
     <div class="content">
+       <h3>Count : <span id="spanCount">#</span></h3>
         <label for="">Task :</label>
         <input type="text" name="" id="txtTask">
         <input type="button" value="Add Task" id="btnAddTask">
