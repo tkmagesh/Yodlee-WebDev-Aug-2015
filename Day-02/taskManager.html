@@ -44,12 +44,27 @@
 
             var btnAddTask = document.getElementById("btnAddTask");
             btnAddTask.addEventListener("click", onBtnAddTaskClick);
+
+            for(var i=0; i<olTaskList.children.length; i++){
+                var taskItem = olTaskList.children[i];
+                taskItem.addEventListener("click", onTaskItemClick);
+            }
+        }
+
+        function onTaskItemClick(){
+            if (this.classList.contains("completed")){
+                this.classList.remove("completed");
+            } else {
+                this.classList.add("completed");
+            }
         }
 
         function onBtnAddTaskClick(){
             var taskName = txtTask.value;
-            var newTaskItem = "<li>" + taskName + "</li>";
-            olTaskList.innerHTML += newTaskItem;
+            var newTaskItem = document.createElement("li");
+            newTaskItem.innerHTML = taskName;
+            newTaskItem.addEventListener("click", onTaskItemClick);
+            olTaskList.appendChild(newTaskItem);
         }
     </script>
 </head>
