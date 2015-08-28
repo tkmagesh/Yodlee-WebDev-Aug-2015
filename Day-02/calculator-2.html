@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <style>
+        .invalid {
+            border : 1px solid red;
+            background: lightpink;
+        }
+    </style>
+    <script>
+        window.addEventListener("DOMContentLoaded", init);
+        var txtNumber1 = null,
+            txtNumber2 = null,
+            selectOperation = null,
+            divResult = null;
+
+        function init(){
+            txtNumber1 = document.getElementById("txtNumber1");
+            txtNumber2 = document.getElementById("txtNumber2");
+            selectOperation = document.getElementById("selectOperation");
+            divResult = document.getElementById("divResult");
+
+            var btnCalculate = document.getElementById("btnCalculate");
+            btnCalculate.addEventListener("click", onBtnCalculateClick);
+        }
+        function onBtnCalculateClick(){
+            var isValid = false;
+            if (txtNumber1.value === '' || isNaN(txtNumber1.value)){
+                txtNumber1.style.border = '1px solid red';
+                txtNumber1.style.background = 'lightpink';
+                isValid = false;
+            } else {
+                txtNumber1.style.border = '';
+                txtNumber1.style.background = '';
+                isValid = true;
+            }
+
+            if (txtNumber2.value === '' || isNaN(txtNumber2.value)){
+                txtNumber2.classList.add('invalid');
+                isValid = false;
+
+            } else {
+                txtNumber2.classList.remove('invalid');
+                isValid = true;
+            }
+
+            if (!isValid) return;
+
+            var number1 = parseInt(txtNumber1.value,10),
+                number2 = parseInt(txtNumber2.value,10),
+                operation = selectOperation.value,
+                result = 0;
+
+            switch (operation){
+                case 'add' :
+                    result = number1 + number2;
+                    break;
+                case 'subtract' :
+                    result = number1 - number2;
+                    break;
+                case 'multiply' :
+                    result = number1 * number2;
+                    break;
+                case 'divide' :
+                    result = number1 / number2;
+                    break;
+            }
+            divResult.innerHTML = result;
+
+        }
+    </script>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <hr>
+    <input type="text" name="" id="txtNumber1">
+    <select name="" id="selectOperation">
+        <option value="add">add</option>
+        <option value="subtract">subtract</option>
+        <option value="multiply">multiply</option>
+        <option value="divide">divide</option>
+    </select>
+    <input type="text" name="" id="txtNumber2">
+    <input type="button" value="Calculate" id="btnCalculate">
+    <div id="divResult">[Result]</div>
+</body>
+</html>
