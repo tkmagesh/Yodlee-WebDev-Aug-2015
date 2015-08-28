@@ -88,11 +88,13 @@
                 } else {
                     this.classList.add("completed");
                 }
+                var taskId = this.getAttribute("data-taskId");
+                taskStorage.toggle(taskId);
             }
 
             function onBtnAddTaskClick(){
                 var taskName = txtTask.value;
-                var newTask = taskStorage.save(taskName);
+                var newTask = taskStorage.save({name : taskName, isCompleted : false});
                 addTaskToList(newTask);
             }
 
@@ -100,6 +102,9 @@
                 var newTaskItem = document.createElement("li");
                 newTaskItem.setAttribute("data-taskId", task.id);
                 newTaskItem.innerHTML = task.name;
+                if (task.isCompleted){
+                    newTaskItem.classList.add("completed");
+                }
                 newTaskItem.addEventListener("click", onTaskItemClick);
                 olTaskList.appendChild(newTaskItem);
             }

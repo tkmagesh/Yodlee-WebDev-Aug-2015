@@ -5,11 +5,8 @@ function getTaskStorage(){
                     var result = [];
                     for(var i=0; i<storage.length; i++){
                         var key = storage.key(i);
-                        var taskName = storage.getItem(key);
-                        var task = {
-                            id : key,
-                            name : taskName
-                        };
+                        var taskAsString = storage.getItem(key);
+                        var task = JSON.parse(taskAsString);
                         result.push(task);
                     }
                     if (typeof this.onCountChange === 'function')
@@ -17,13 +14,18 @@ function getTaskStorage(){
                     return result;
 
                 },
-                save : function(taskName){
-                    var newTaskId = Date.now().toString();
-                    storage.setItem(newTaskId, taskName);
-                    var task = { id : newTaskId, name : taskName };
+                save : function(task){
+                    task.id = task.id || Date.now();
+                    storage.setItem(task.id, JSON.stringify(task));
                     if (typeof this.onCountChange === 'function')
                         this.onCountChange(storage.length);
                     return task;
+                },
+                toggle : function(taskId){
+                    var taskAsString = storage.getItem(taskId);
+                    var task = JSON.parse(taskAsString);
+                    task.isCompleted = !task.isCompleted;
+                    storage.setItem(task.id, JSON.stringify(task));
                 },
                 remove : function(taskId){
                     storage.removeItem(taskId);
