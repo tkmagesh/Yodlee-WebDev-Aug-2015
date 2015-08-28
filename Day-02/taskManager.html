@@ -23,6 +23,7 @@
             cursor: pointer;
         }
     </style>
+    <script src="taskStorage.js"></script>
     <script>
     /* Use Cases */
     /*
@@ -47,10 +48,13 @@
 
     */
 
+
         (function myApp(){
             window.addEventListener("DOMContentLoaded", init);
             var olTaskList = null,
                 txtTask = null;
+                taskStorage = getTaskStorage();
+
             function init(){
                 olTaskList = document.getElementById("olTaskList");
                 txtTask = document.getElementById("txtTask");
@@ -61,10 +65,10 @@
                 var btnRemoveCompleted = document.getElementById("btnRemoveCompleted");
                 btnRemoveCompleted.addEventListener("click", onBtnRemoveCompletedClick);
 
-                for(var i=0; i<localStorage.length; i++){
-                    var key = localStorage.key(i);
-                    var taskName = localStorage.getItem(key);
-                    addTaskToList(key, taskName);
+                var tasks = taskStorage.getAll();
+                for(var i=0; i<tasks.length; i++){
+                    var task = tasks[i];
+                    addTaskToList(task);
                 }
 
 
@@ -80,15 +84,14 @@
 
             function onBtnAddTaskClick(){
                 var taskName = txtTask.value;
-                var newTaskId = Date.now().toString();
-                localStorage.setItem(newTaskId, taskName);
-                addTaskToList(newTaskId, taskName);
+                var newTask = taskStorage.save(taskName);
+                addTaskToList(newTask);
             }
 
-            function addTaskToList(taskId, taskName){
+            function addTaskToList(task){
                 var newTaskItem = document.createElement("li");
-                newTaskItem.setAttribute("data-taskId", taskId);
-                newTaskItem.innerHTML = taskName;
+                newTaskItem.setAttribute("data-taskId", task.id);
+                newTaskItem.innerHTML = task.name;
                 newTaskItem.addEventListener("click", onTaskItemClick);
                 olTaskList.appendChild(newTaskItem);
             }
@@ -98,7 +101,7 @@
                     var taskItem = olTaskList.children[i];
                     if (taskItem.classList.contains("completed")){
                         var taskId = taskItem.getAttribute("data-taskId");
-                        localStorage.removeItem(taskId);
+                        taskStorage.remove(taskId);
                         taskItem.remove();
                     }
                 }
